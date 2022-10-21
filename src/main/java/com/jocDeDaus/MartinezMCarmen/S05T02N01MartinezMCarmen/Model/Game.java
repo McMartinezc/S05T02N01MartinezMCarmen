@@ -5,6 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+//https://attacomsian.com/blog/spring-data-jpa-many-to-many-mapping
+
 //Getters i setters amb lombok
 @Setter
 @Getter
