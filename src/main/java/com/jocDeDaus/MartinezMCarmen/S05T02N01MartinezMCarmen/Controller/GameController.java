@@ -27,7 +27,7 @@ public class GameController {
     //Get getOne player by id
     @GetMapping("/getOne/{id}")
     public ResponseEntity<PlayerDTO> getOnePlayer(@PathVariable("idPlayer") int idPlayer) {
-
+        return null;
     }
 
     //Post crear un jugador
