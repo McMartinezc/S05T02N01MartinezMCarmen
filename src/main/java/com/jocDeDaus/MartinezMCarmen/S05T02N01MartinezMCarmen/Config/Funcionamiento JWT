@@ -1,0 +1,60 @@
+##JWT
+Es un estándar que al estar almacenado en el lado del cliente reduce recursos del servidor
+
+##Funcionamiento JWT
+1.Jugador envía una petición a un servidor (/login)
+2.Servidor valida username y password, si no son válidos devolverá una respuesta 401 unauthorized
+3.Servidor valida username y password, si no son válidos entonces genera un token JWT utiliza una secret key
+4.Servidor devuelve el token JWT generado al jugador
+5.Jugador envía peticiones a los enpoints del servidor utilando ese token JWT en las cabeceras
+6.Servidor valida el token JWT en cada petición y si es correcto permite el acceso a los datos
+
+##Ventajas JWT
+El token se almacena en el usuario (navegador, app...) de manera que consume menos recursos en el Servidor, el cual permite mejor escabilidad
+##Desventajas JWT
+El toke está almacenado en el navegador, no podriamos invalidarlo antes de la fecha de expiración asignada cuando se creó
+Lo que se realia es dar la opción de logout, lo cual simplemente borra el token
+
+##Esctructura del JWT
+1. Header (metadatos)
+JSON
+...
+{
+    "algoritmo":"HS512",
+    "typ":"JWT"
+}
+...
+
+2.Payload (información, datos usuario, datos no sensibles)
+JSOM
+...
+{
+    "name":"",
+    "admin": true
+}
+...
+
+3.Signatura
+...
+HMACKH256(
+base64UrlEncode(header)+"."+base64UrlEncode(payload), secret
+
+...
+
+El user-Agent envía el token JWTen las cabeceras
+
+...
+Authorization: Bearer<token>
+...
+
+##Configuracion
+
+Crear proyecto con springboot
+Spring Security
+Spring Web
+Spring boot devtools
+Spring Data JPA
+PostegreSQL
+Dependencia jwt se añade manualmente
+
+Sesion 15
