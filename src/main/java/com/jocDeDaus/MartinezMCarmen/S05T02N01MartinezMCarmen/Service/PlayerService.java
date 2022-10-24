@@ -2,6 +2,7 @@ package com.jocDeDaus.MartinezMCarmen.S05T02N01MartinezMCarmen.Service;
 
 import com.jocDeDaus.MartinezMCarmen.S05T02N01MartinezMCarmen.DTO.PlayerDTO;
 import com.jocDeDaus.MartinezMCarmen.S05T02N01MartinezMCarmen.Model.Player;
+import com.jocDeDaus.MartinezMCarmen.S05T02N01MartinezMCarmen.Repository.GameRepository;
 import com.jocDeDaus.MartinezMCarmen.S05T02N01MartinezMCarmen.Repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -14,8 +15,10 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class PlayerServiceImplements{
+public class PlayerService {
 
+    @Autowired
+    private GameRepository gameRepository;
 
     @Autowired
     private PlayerRepository playerRepository;
@@ -39,6 +42,10 @@ public class PlayerServiceImplements{
 
 
     public PlayerDTO addPlayer(PlayerDTO playerDTO) {
+        if(playerDTO.getNomJugador() == null "".equalsIgnoreCase(playerDTO.getNomJugador())){
+            playerDTO.setNomJugador("Anonim");
+        }
+        if(playerDTO.getNomJugador().equalsIgnoreCase())
         return null;
     }
 
