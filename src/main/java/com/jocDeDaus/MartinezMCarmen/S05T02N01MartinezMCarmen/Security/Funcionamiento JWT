@@ -5,7 +5,7 @@ Es un estándar que al estar almacenado en el lado del cliente reduce recursos d
 1.Jugador envía una petición a un servidor (/login)
 2.Servidor valida username y password, si no son válidos devolverá una respuesta 401 unauthorized
 3.Servidor valida username y password, si no son válidos entonces genera un token JWT utiliza una secret key
-4.Servidor devuelve el token JWT generado al jugador
+4.Servidor devuelve el token JWT generado al user
 5.Jugador envía peticiones a los enpoints del servidor utilando ese token JWT en las cabeceras
 6.Servidor valida el token JWT en cada petición y si es correcto permite el acceso a los datos
 

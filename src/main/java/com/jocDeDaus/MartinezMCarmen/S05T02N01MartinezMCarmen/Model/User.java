@@ -2,7 +2,6 @@ package com.jocDeDaus.MartinezMCarmen.S05T02N01MartinezMCarmen.Model;
 
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -15,7 +14,7 @@ import java.util.*;
 
 @Entity
 @Table(name="jugador")
-public class Player {
+public class User {
 
   @Id
   @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -27,42 +26,29 @@ public class Player {
   @Column(name="data_registre")
   private LocalDate data_registre;
 
-  private List<Game> mevesPartides;
+  private List<Tirada> mevesPartides;
 
   //Constructor
-  public Player() {
+  public User() {
     this.nomJugador="Anònim";
   }
 
-  public Player(String nomJugador, String email, String password) {
+  public User(String nomJugador, String email, String password) {
     this.nomJugador = nomJugador;
     this.email = email;
     this.password = password;
   }
+
   //Metode que guarda la tirada
-  public void addTirada(Game tirada) {
+  public void addTirada(Tirada tirada) {
     if (mevesPartides == null) {
-      mevesPartides = new ArrayList<Game>();
+      mevesPartides = new ArrayList<Tirada>();
     }
     mevesPartides.add(tirada);
-    tirada.setPlayer(this);
+    tirada.setUser(this);
   }
 
-  //Calcula el percentatge d'exit del jugador
-  public double calculaPercentatgeExitPlayer(){
-    double percentatgeExit=0;
-    if(mevesPartides != null && mevesPartides.size()>0){
-      int gameListSize = mevesPartides.size();
-      int totalGuanyat = 0;
-      for(Game tirada : mevesPartides){
-        if(tirada.isGuanya()){
-          totalGuanyat++;
-        }
-      }
-      percentatgeExit =(totalGuanyat *100 )/ gameListSize;
-    }
-    return percentatgeExit;
-  }
+
 
 
 

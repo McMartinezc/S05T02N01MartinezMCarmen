@@ -13,7 +13,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="tirades")
-public class Game {
+public class Tirada {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,40 +27,34 @@ public class Game {
     private boolean guanya;
 
     @ManyToOne
-    @JoinColumn(name = "player_id_jugador")
-    private Player player;
+    @JoinColumn(name = "player_idJugador")
+    private User user;
 
     //Constructors
-    public Game() {
+    public Tirada() {
     }
-    public Game(int idGame, int dau1, int dau2, boolean guanya, Player player) {
+    public Tirada(int idGame, int dau1, int dau2, boolean guanya, User user) {
         this.idGame = idGame;
         this.dau1 = dau1;
         this.dau2 = dau2;
         this.guanya = guanya;
-        this.player = player;
+        this.user = user;
     }
 
-    public Game (Player player) {
+    public Tirada(User user) {
         this.dau1 = generarTirada();
         this.dau2 = generarTirada();
         this.guanya = resultatTirada();
-        this.player = player;
-    }
-    public Player getPlayer() {
-        return player;
-    }
-    public void setPlayer(Player player) {
-        this.player = player;
+        this.user = user;
     }
 
     //Valor random del dau
     public int generarTirada(){
-        int random = (int) Math.floor(Math.random()*6);
+        int random = (int) Math.floor(Math.random()* 6 + 1); //Metode que genera un número random del 1 al 6
         return random;
     }
 
-    //Metode que comprova el resultat sigui 7 guanya
+    //Metode que comprova el resultat sigui 7 guanya, dona true si ha guanyat o false si ha perdut
     public boolean resultatTirada(){
         boolean resultat;
 
@@ -79,7 +73,7 @@ public class Game {
                 ", dau1=" + dau1 +
                 ", dau2=" + dau2 +
                 ", guanya=" + guanya +
-                ", player=" + player +
+                ", player=" + user +
                 '}';
     }
 }
