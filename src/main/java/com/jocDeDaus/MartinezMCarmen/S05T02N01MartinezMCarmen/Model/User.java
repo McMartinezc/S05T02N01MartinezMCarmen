@@ -3,14 +3,16 @@ package com.jocDeDaus.MartinezMCarmen.S05T02N01MartinezMCarmen.Model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.*;
 
-//Amb lombok creem setters i getters
+//Amb lombok creem setters, getters i ToString
 @Getter
 @Setter
+@ToString
 
 @Entity
 @Table(name="jugador")
@@ -23,14 +25,15 @@ public class User {
   private String nomJugador;
   private String email;
   private String password;
+
   @Column(name="data_registre")
   private LocalDate data_registre;
-
+  @OneToMany(mappedBy = "user")
   private List<Tirada> mevesPartides;
 
   //Constructor
   public User() {
-    this.nomJugador="Anònim";
+    this.nomJugador="Anonim";
   }
 
   public User(String nomJugador, String email, String password) {
@@ -41,18 +44,12 @@ public class User {
 
   //Metode que guarda la tirada
   public void addTirada(Tirada tirada) {
+
     if (mevesPartides == null) {
       mevesPartides = new ArrayList<Tirada>();
     }
     mevesPartides.add(tirada);
     tirada.setUser(this);
   }
-
-
-
-
-
-
-
 
 }

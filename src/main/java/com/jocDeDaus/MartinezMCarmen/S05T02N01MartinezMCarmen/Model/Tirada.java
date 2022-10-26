@@ -2,14 +2,16 @@ package com.jocDeDaus.MartinezMCarmen.S05T02N01MartinezMCarmen.Model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 //https://attacomsian.com/blog/spring-data-jpa-many-to-many-mapping
 
-//Getters i setters amb lombok
+//Getters, setters i ToString amb lombok
 @Setter
 @Getter
+@ToString
 
 @Entity
 @Table(name="tirades")
@@ -27,12 +29,13 @@ public class Tirada {
     private boolean guanya;
 
     @ManyToOne
-    @JoinColumn(name = "player_idJugador")
+    @JoinColumn(name = "user_idJugador")
     private User user;
 
     //Constructors
     public Tirada() {
     }
+
     public Tirada(int idGame, int dau1, int dau2, boolean guanya, User user) {
         this.idGame = idGame;
         this.dau1 = dau1;
@@ -66,14 +69,5 @@ public class Tirada {
         return resultat;
     }
 
-    @Override
-    public String toString() {
-        return "Game{" +
-                "idGame=" + idGame +
-                ", dau1=" + dau1 +
-                ", dau2=" + dau2 +
-                ", guanya=" + guanya +
-                ", player=" + user +
-                '}';
-    }
+
 }

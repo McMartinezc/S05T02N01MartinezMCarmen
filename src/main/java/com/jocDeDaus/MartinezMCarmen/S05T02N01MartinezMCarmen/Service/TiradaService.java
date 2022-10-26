@@ -35,23 +35,23 @@ public class TiradaService {
         return null;
     }
 
-    //Metode que visualitza totes les jugades del jugador
+  /*  //Metode que visualitza totes les jugades del jugador
     public List<Tirada> getTiradaByPlayer (int idPlayer){
-        return tiradaRepository.findAllById(idPlayer);
+        return tiradaRepository.findOne(idPlayer);
     }
-
+*/
 
     //Metode eliminar la llista de jugades del jugador
-    public User deleteTiradesJugador(int idPlayer){
+    public void deleteTiradesJugador (int idPlayer){
+
         Optional <User> optionalPlayer = userRepository.findById(idPlayer);
 
         if(optionalPlayer.isPresent()){
             User user = optionalPlayer.get();
             tiradaRepository.deleteAll(user.getMevesPartides());
             user.getMevesPartides().clear();
-            return user;
         }
-        return null;
+
     }
 
 
